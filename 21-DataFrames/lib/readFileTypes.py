@@ -17,6 +17,8 @@ if __name__ == "__main__":
         .sample(withReplacement=False, fraction=0.3, seed=3)
 
     logDF.show(10)
+    logDF.show(10)
+
 
 ## Reading files  - Different ways
     # Type 1
