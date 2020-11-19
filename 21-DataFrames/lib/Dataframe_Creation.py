@@ -106,6 +106,8 @@ if __name__ == "__main__":
     print(cols)
 
     print("dfwithTimestamp2")
+
+
     minmax = dfwithTimestamp3.select(min("Transformed_Integer_column")).collect().map(_(0)).toList
 
 
@@ -115,6 +117,7 @@ if __name__ == "__main__":
 
     newdf5=dfwithTimestamp3.select(hour(from_utc_timestamp(col("Timeintimestamp"), "GMT")).alias("hour"))\
                             .groupBy("hour").count().orderBy("hour")
+
     newdf5.show()
 
 
