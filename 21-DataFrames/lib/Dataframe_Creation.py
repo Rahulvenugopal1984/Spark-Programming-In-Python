@@ -108,12 +108,16 @@ if __name__ == "__main__":
     print("dfwithTimestamp2")
 
 
+    minmax = dfwithTimestamp3.select(min("Transformed_Integer_column")).collect().map(_(0)).toList
+
+
+    print(type(minmax))
+
     dfwithTimestamp3.agg({'Transformed_Integer_column': 'max'}).show()
 
+    newdf5=dfwithTimestamp3.select(hour(from_utc_timestamp(col("Timeintimestamp"), "GMT")).alias("hour"))\
+                            .groupBy("hour").count().orderBy("hour")
 
-
-    newdf5 = dfwithTimestamp3.select(hour(unix_timestamp(col("Timeintimestamp"), "GMT")).alias("hour")) \
-        .groupBy("hour").count().orderBy("hour")
     newdf5.show()
 
 
